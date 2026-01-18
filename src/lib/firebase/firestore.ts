@@ -15,6 +15,11 @@ export interface Favorite {
 }
 
 export const toggleFavorite = async (userId: string, item: Favorite) => {
+  if (!db) {
+    console.error("Firestore is not initialized.");
+    return;
+  }
+
   const userRef = doc(db, 'users', userId);
   const userDoc = await getDoc(userRef);
 
@@ -38,6 +43,11 @@ export const toggleFavorite = async (userId: string, item: Favorite) => {
 };
 
 export const getFavorites = async (userId: string): Promise<Favorite[]> => {
+  if (!db) {
+    console.error("Firestore is not initialized.");
+    return [];
+  }
+
   const userRef = doc(db, 'users', userId);
   const userDoc = await getDoc(userRef);
 

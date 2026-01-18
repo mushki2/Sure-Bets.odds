@@ -20,6 +20,10 @@ export default function SignupPage() {
 
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!auth) {
+      setError('Authentication system is not configured. Please check your environment variables.');
+      return;
+    }
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;

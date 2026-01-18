@@ -19,6 +19,10 @@ export default function LoginPage() {
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!auth) {
+      setError('Authentication system is not configured. Please check your environment variables.');
+      return;
+    }
     setLoading(true);
     setError('');
     try {
